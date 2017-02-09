@@ -20,7 +20,7 @@ module.exports = class Home extends Component {
 
     onButtonPress () {
         this.props.navigator.push({
-            id: 'Dos'
+            id: 'Login'
         });
     }
 };

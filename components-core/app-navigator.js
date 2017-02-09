@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import Home from '../views/home.js';
-import Dos from '../views/login.js';
+import Login from '../views/login.js';
 
 export default class AppNavigator extends Component {
     render() {
@@ -20,8 +20,8 @@ export default class AppNavigator extends Component {
         switch (route.id) {
             case 'Home':
                 return(<Home navigator={navigator} title='Home' />);
-            case 'Dos':
-                return(<Dos navigator={navigator} title='Dos' />);
+            case 'Login':
+                return(<Login navigator={navigator} title='Login' />);
         }
     }
 };
