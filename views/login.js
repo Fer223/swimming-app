@@ -6,6 +6,8 @@ import {
     TextInput
 } from 'react-native';
 
+import FirebaseUpdater from '../components-core/firebase-updater';
+
 module.exports = class Dos extends Component {
 
     render () {
@@ -14,6 +16,7 @@ module.exports = class Dos extends Component {
                 <Text>Login</Text>
                 <TextInput/>
                 <TextInput/>
+                <FirebaseUpdater />
             </View>
         );
     }
