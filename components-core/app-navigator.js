@@ -11,13 +11,14 @@ import Login from '../views/login.js';
 import Rutinas from '../views/rutinas.js';
 
 export default class AppNavigator extends Component {
-    render() {
+
+    render () {
         return (
             <Navigator initialRoute={{id: 'Home'}} renderScene={this.renderScene} />
         );
     }
 
-    renderScene(route, navigator) {
+    renderScene (route, navigator) {
         var component = route.id;
 
         switch (route.id) {
