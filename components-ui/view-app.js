@@ -9,7 +9,7 @@ module.exports = class ViewApp extends Component {
     componentDidMount () {
         BackAndroid.addEventListener('hardwareBackPress', () => {
             if (this.props.title !== 'Home') {
-                this.props.navigator.pop()
+                this.props.navigator.pop();
                 return true;
             }
             return false;

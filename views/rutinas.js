@@ -1,20 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    BackAndroid,
     StyleSheet,
     Text,
     View
 } from 'react-native';
 
+import TabbedArea from '../components-core/tabbed-area.js';
 import ViewApp from '../components-ui/view-app.js';
+
+var laconchadetumama = [
+    {
+        text: 'principieante'
+    },
+    {
+        text: 'intermedio'
+    },
+    {
+        text: 'avanzado'
+    }
+];
 
 module.exports = class Rutinas extends ViewApp {
 
     render () {
         return (
             <View>
-                <Text>Rutinas</Text>
+                <Text style={styles.title}>Rutinas</Text>
+                <TabbedArea tabs={laconchadetumama} />
             </View>
         );
     }
 };
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 30,
+        color: 'blue',
+        textAlign: 'center'
+    }
+});
