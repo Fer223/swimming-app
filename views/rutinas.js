@@ -8,7 +8,7 @@ import {
 import TabbedArea from '../components-core/tabbed-area.js';
 import ViewApp from '../components-ui/view-app.js';
 
-var laconchadetumama = [
+var tabs = [
     {
         text: 'principieante'
     },
@@ -26,7 +26,7 @@ module.exports = class Rutinas extends ViewApp {
         return (
             <View>
                 <Text style={styles.title}>Rutinas</Text>
-                <TabbedArea tabs={laconchadetumama} />
+                <TabbedArea tabs={tabs} />
             </View>
         );
     }
