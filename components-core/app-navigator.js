@@ -4,17 +4,22 @@ import {
     Navigator
 } from 'react-native';
 
+import Cronometro from '../views/cronometro.js';
+import Estadisticas from '../views/estadisticas.js';
 import Home from '../views/home.js';
 import Login from '../views/login.js';
+import Rutina from '../views/rutina.js';        //TODAVIA NO FUNCA
+import Rutinas from '../views/rutinas.js';
 
 export default class AppNavigator extends Component {
-    render() {
+
+    render () {
         return (
             <Navigator initialRoute={{id: 'Home'}} renderScene={this.renderScene} />
         );
     }
 
-    renderScene(route, navigator) {
+    renderScene (route, navigator) {
         var component = route.id;
 
         switch (route.id) {
@@ -22,6 +27,14 @@ export default class AppNavigator extends Component {
                 return(<Home navigator={navigator} title='Home' />);
             case 'Login':
                 return(<Login navigator={navigator} title='Login' />);
+            case 'Rutinas':
+                return(<Rutinas navigator={navigator} title='Rutinas' />);
+            case 'Estadisticas':
+                return(<Estadisticas navigator={navigator} title='Estadisticas' />);
+            case 'Cronometro':
+                return(<Cronometro navigator={navigator} title='Cronometro' />);
+            case 'Rutina':      //TODAVIA NO FUNCA
+                return(<Rutina navigator={navigator} title='Rutina' />);
         }
     }
 };

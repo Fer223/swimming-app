@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
+    Button,
+    Image,
     StyleSheet,
-    Text,
-    View,
-    TouchableHighlight
+    View
 } from 'react-native';
 
 module.exports = class Home extends Component {
@@ -11,25 +11,29 @@ module.exports = class Home extends Component {
     render () {
         return (
             <View>
-                <TouchableHighlight onPress={this.onButtonPress.bind(this)}>
-                    <Text style={styles.title}>Home</Text>
-                </TouchableHighlight>
+                <Image
+                    style={{width: 400, height: 220}}
+                    source={require('../assets/nadador.jpg')}
+                />
+                <View style={styles.buttonSection}>
+                    <Button onPress={this.onButtonPress.bind(this, 'Rutinas')} title='Rutinas' />
+                    <Button onPress={this.onButtonPress.bind(this, 'Cronometro')} title='Cronometro' />
+                    <Button onPress={this.onButtonPress.bind(this, 'Estadisticas')} title='Estadisticas' />
+                </View>
             </View>
         );
     }
 
-    onButtonPress () {
+    onButtonPress (view) {
         this.props.navigator.push({
-            id: 'Login'
+            id: view
         });
     }
 };
 
 const styles = StyleSheet.create({
-    title: {
-        color: 'blue',
-        fontWeight: 'bold',
-        fontSize: 30,
-        textAlign: 'center'
+    buttonSection: {
+        width: 300,
+        margin: 30
     }
 });
