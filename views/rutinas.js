@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import {
     StyleSheet,
@@ -7,26 +8,14 @@ import {
 
 import TabbedArea from '../components-core/tabbed-area.js';
 import ViewApp from '../components-ui/view-app.js';
-
-var tabs = [
-    {
-        text: 'principieante'
-    },
-    {
-        text: 'intermedio'
-    },
-    {
-        text: 'avanzado'
-    }
-];
+import rutinas from '../data/rutinas.js'
 
 module.exports = class Rutinas extends ViewApp {
 
     render () {
         return (
             <View>
-                <Text style={styles.title}>Rutinas</Text>
-                <TabbedArea tabs={tabs} />
+                <TabbedArea tabs={_.map(rutinas, 'categoria')} rutines={rutinas} />
             </View>
         );
     }

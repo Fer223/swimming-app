@@ -3,12 +3,8 @@ import {
     Button,
     Image,
     StyleSheet,
-    Text,
-    View,
-    TouchableHighlight
+    View
 } from 'react-native';
-
-import firebaseHandler from '../components-core/firebase-handler.js';
 
 module.exports = class Home extends Component {
 
@@ -29,7 +25,6 @@ module.exports = class Home extends Component {
     }
 
     onButtonPress (view) {
-        firebaseHandler.push();
         this.props.navigator.push({
             id: view
         });
