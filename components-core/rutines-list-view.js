@@ -8,7 +8,7 @@ import {
     View
 } from 'react-native';
 
-module.exports = class RutinesListView extends Component {
+class RutinesListView extends Component {
     constructor () {
         super();
 
@@ -17,6 +17,14 @@ module.exports = class RutinesListView extends Component {
 
     componentWillMount () {
         var rutinesNames = _.map(this.props.rutines, 'rutineName');
+
+        this.state = {
+            dataSource: this.ds.cloneWithRows(rutinesNames),
+        };
+    }
+
+    componentWillReceiveProps (nextProps) {
+        var rutinesNames = _.map(nextProps.rutines, 'rutineName');
 
         this.state = {
             dataSource: this.ds.cloneWithRows(rutinesNames),
@@ -36,9 +44,9 @@ module.exports = class RutinesListView extends Component {
         };
     }
 
-    renderRow (rowData) {
+    renderRow (rowData, section1, index) {
         return (
-            <TouchableHighlight style={styles.row} onPress={() => console.warn('esto me tendria q mandar a la lista de ejercicios de esta rutina')} >
+            <TouchableHighlight style={(index % 2) ? styles.row : styles.secondaryRow} onPress={() => console.warn('esto me tendria q mandar a la lista de ejercicios de esta rutina')} >
                 <Text>
                     {rowData}
                 </Text>
@@ -47,9 +55,18 @@ module.exports = class RutinesListView extends Component {
     }
 };
 
+RutinesListView.propTypes = {
+    rutines: React.PropTypes.arrayOf(React.PropTypes.object)
+};
+
 const styles = StyleSheet.create({
     row: {
-        borderBottomWidth: 1,
         padding: 20
+    },
+    secondaryRow: {
+        padding: 20,
+        backgroundColor: '#CEECF5'
     }
 });
+
+module.exports = RutinesListView;

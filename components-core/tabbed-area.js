@@ -58,21 +58,19 @@ module.exports = class TabbedArea extends Component {
 
 const styles = StyleSheet.create({
     tab: {
-        borderWidth: 1,
         width: 120,
-        padding: 15,
-        backgroundColor: '#8282FE'
+        padding: 15
     },
     selectedTab: {
-        borderWidth: 1,
         width: 120,
         padding: 15,
-        backgroundColor: '#4D4DC9'
+        borderBottomWidth: 3,
+        borderBottomColor: 'black'
     },
     tabs: {
         flexWrap: 'wrap',
         alignItems: 'flex-start',
-        flexDirection:'row',
+        flexDirection:'row'
     },
     tabContent:  {
         flexDirection: 'column',
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
         width: 500
     },
     text: {
-        color: 'white',
-        fontSize: 15
+        fontSize: 15,
+        textAlign: 'center'
     }
 });

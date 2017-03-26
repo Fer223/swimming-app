@@ -3,16 +3,16 @@ module.exports = [      //SE PUEDE AGREGAR LA CATEGORIA EN ESTE MISMO FIXTURE PA
         categoria: 'principiante',
         rutinas: [
             {
-            rutineName: 'rutina1',
-            rutineContent: [
-                'ejercicio1',
-                'ejercicio2',
-                'ejercicio3',
-                'ejercicio4',
-                'ejercicio5',
-                'ejercicio6',
-            ]
-        },
+                rutineName: 'rutina1',
+                rutineContent: [
+                    'ejercicio1',
+                    'ejercicio2',
+                    'ejercicio3',
+                    'ejercicio4',
+                    'ejercicio5',
+                    'ejercicio6',
+                ]
+            },
             {
                 rutineName: 'rutina2',
                 rutineContent: [
