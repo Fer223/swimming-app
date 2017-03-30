@@ -19,7 +19,7 @@ class RutinesListView extends Component {
         var rutinesNames = _.map(this.props.rutines, 'rutineName');
 
         this.state = {
-            dataSource: this.ds.cloneWithRows(rutinesNames),
+            dataSource: this.ds.cloneWithRows(rutinesNames)
         };
     }
 
@@ -37,21 +37,28 @@ class RutinesListView extends Component {
         );
     }
 
-    getListViewProps (rowData) {
+    getListViewProps () {
         return {
             dataSource: this.state.dataSource,
-            renderRow: this.renderRow.bind(rowData)
+            renderRow: this.renderRow.bind(this)
         };
     }
 
     renderRow (rowData, section1, index) {
         return (
-            <TouchableHighlight style={(index % 2) ? styles.row : styles.secondaryRow} onPress={() => console.warn('esto me tendria q mandar a la lista de ejercicios de esta rutina')} >
+            <TouchableHighlight {...this.getRowProps(index)} >
                 <Text>
                     {rowData}
                 </Text>
             </TouchableHighlight>
         );
+    }
+
+    getRowProps (index) {
+        return {
+            style: (index % 2) ? styles.row : styles.secondaryRow,
+            onPress: this.props.handleRoutinePress.bind(this, this.props.rutines[index].rutineContent)
+        };
     }
 };
 

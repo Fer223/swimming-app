@@ -39,16 +39,19 @@ module.exports = class TabbedArea extends Component {
         });
     }
 
-    renderSelectedTabContent () {       //ESTA MIERDA NO ESTA RE RENDERIZANDO EL CONTENIDO DEL TAB
+    renderSelectedTabContent () {
         return (
             <View style={styles.tabContent}>
-                <RutinesListView rutines={this.getSelectedRutines()} />
+                <RutinesListView {...this.getRutinesListViewProps()} />
             </View>
         );
     }
 
-    getSelectedRutines () {
-        return this.props.rutines[this.state.selectedTab].rutinas;
+    getRutinesListViewProps () {
+        return {
+            rutines: this.props.rutines[this.state.selectedTab].rutinas,
+            handleRoutinePress: this.props.handleTabElementPress
+        };
     }
 
     getTabStyle (index) {
