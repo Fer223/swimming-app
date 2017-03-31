@@ -15,9 +15,24 @@ module.exports = class Rutinas extends ViewApp {
     render () {
         return (
             <View>
-                <TabbedArea tabs={_.map(rutinas, 'categoria')} rutines={rutinas} />
+                <TabbedArea {...this.getTabbedAreaProps()} />
             </View>
         );
+    }
+
+    getTabbedAreaProps () {
+        return {
+            tabs: _.map(rutinas, 'categoria'),
+            rutines: rutinas,
+            handleTabElementPress: this.handleRoutinePress.bind(this)
+        };
+    }
+
+    handleRoutinePress (rutinas) {
+        this.props.navigator.push({
+            id: 'Rutina',
+            rutinas: rutinas
+        });
     }
 };
 

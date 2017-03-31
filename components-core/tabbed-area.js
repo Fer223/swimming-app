@@ -39,16 +39,19 @@ module.exports = class TabbedArea extends Component {
         });
     }
 
-    renderSelectedTabContent () {       //ESTA MIERDA NO ESTA RE RENDERIZANDO EL CONTENIDO DEL TAB
+    renderSelectedTabContent () {
         return (
             <View style={styles.tabContent}>
-                <RutinesListView rutines={this.getSelectedRutines()} />
+                <RutinesListView {...this.getRutinesListViewProps()} />
             </View>
         );
     }
 
-    getSelectedRutines () {
-        return this.props.rutines[this.state.selectedTab].rutinas;
+    getRutinesListViewProps () {
+        return {
+            rutines: this.props.rutines[this.state.selectedTab].rutinas,
+            handleRoutinePress: this.props.handleTabElementPress
+        };
     }
 
     getTabStyle (index) {
@@ -58,21 +61,19 @@ module.exports = class TabbedArea extends Component {
 
 const styles = StyleSheet.create({
     tab: {
-        borderWidth: 1,
         width: 120,
-        padding: 15,
-        backgroundColor: '#8282FE'
+        padding: 15
     },
     selectedTab: {
-        borderWidth: 1,
         width: 120,
         padding: 15,
-        backgroundColor: '#4D4DC9'
+        borderBottomWidth: 3,
+        borderBottomColor: 'black'
     },
     tabs: {
         flexWrap: 'wrap',
         alignItems: 'flex-start',
-        flexDirection:'row',
+        flexDirection:'row'
     },
     tabContent:  {
         flexDirection: 'column',
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         width: 500
     },
     text: {
-        color: 'white',
-        fontSize: 15
+        fontSize: 15,
+        textAlign: 'center'
     }
 });

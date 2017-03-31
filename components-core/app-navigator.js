@@ -33,8 +33,8 @@ export default class AppNavigator extends Component {
                 return(<Estadisticas navigator={navigator} title='Estadisticas' />);
             case 'Cronometro':
                 return(<Cronometro navigator={navigator} title='Cronometro' />);
-            case 'Rutina':      //TODAVIA NO FUNCA
-                return(<Rutina navigator={navigator} title='Rutina' />);
+            case 'Rutina':
+                return(<Rutina navigator={navigator} title='Rutina' rutinas={route.rutinas} />);
         }
     }
 };

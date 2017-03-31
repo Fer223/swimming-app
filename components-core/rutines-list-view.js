@@ -8,7 +8,7 @@ import {
     View
 } from 'react-native';
 
-module.exports = class RutinesListView extends Component {
+class RutinesListView extends Component {
     constructor () {
         super();
 
@@ -17,6 +17,14 @@ module.exports = class RutinesListView extends Component {
 
     componentWillMount () {
         var rutinesNames = _.map(this.props.rutines, 'rutineName');
+
+        this.state = {
+            dataSource: this.ds.cloneWithRows(rutinesNames)
+        };
+    }
+
+    componentWillReceiveProps (nextProps) {
+        var rutinesNames = _.map(nextProps.rutines, 'rutineName');
 
         this.state = {
             dataSource: this.ds.cloneWithRows(rutinesNames),
@@ -29,27 +37,43 @@ module.exports = class RutinesListView extends Component {
         );
     }
 
-    getListViewProps (rowData) {
+    getListViewProps () {
         return {
             dataSource: this.state.dataSource,
-            renderRow: this.renderRow.bind(rowData)
+            renderRow: this.renderRow.bind(this)
         };
     }
 
-    renderRow (rowData) {
+    renderRow (rowData, section1, index) {
         return (
-            <TouchableHighlight style={styles.row} onPress={() => console.warn('esto me tendria q mandar a la lista de ejercicios de esta rutina')} >
+            <TouchableHighlight {...this.getRowProps(index)} >
                 <Text>
                     {rowData}
                 </Text>
             </TouchableHighlight>
         );
     }
+
+    getRowProps (index) {
+        return {
+            style: (index % 2) ? styles.row : styles.secondaryRow,
+            onPress: this.props.handleRoutinePress.bind(this, this.props.rutines[index].rutineContent)
+        };
+    }
+};
+
+RutinesListView.propTypes = {
+    rutines: React.PropTypes.arrayOf(React.PropTypes.object)
 };
 
 const styles = StyleSheet.create({
     row: {
-        borderBottomWidth: 1,
         padding: 20
+    },
+    secondaryRow: {
+        padding: 20,
+        backgroundColor: '#CEECF5'
     }
 });
+
+module.exports = RutinesListView;
