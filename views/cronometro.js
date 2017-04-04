@@ -3,114 +3,66 @@ import {
     View,
     StyleSheet,
     Text,
-    Button
+    TouchableHighlight
 } from 'react-native';
 
-class Chronometer extends Component {
+import ViewApp from '../components-ui/view-app.js';
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
-    constructor () {
-        super();
+class Chronometer extends ViewApp {
 
+    constructor(props) {
+        super(props);
         this.state = {
-            counting: false,
-            result: '00:00:00',
-            timeout: null,
-
-            hours: 0,
-            minutes: 0,
-            seconds: 0
-        }
+            stopwatchStart: false,
+            totalDuration: 90000,
+            stopwatchReset: false,
+        };
+        this.toggleStopwatch = this.toggleStopwatch.bind(this);
+        this.resetStopwatch = this.resetStopwatch.bind(this);
     }
 
-    render () {
+    toggleStopwatch() {
+        this.setState({stopwatchStart: !this.state.stopwatchStart, stopwatchReset: false});
+    }
+
+    resetStopwatch() {
+        this.setState({stopwatchStart: false, stopwatchReset: true});
+    }
+
+
+    render() {
         return (
-            <View>
-                <View>
-                    <Text style={styles.cronometro}>{this.state.result}</Text>
+            <View style={styles.container}>
+                <View style={styles.watch}>
+                    <Stopwatch msecs start={this.state.stopwatchStart} reset={this.state.stopwatchReset} />
                 </View>
-                <View>
-                    <Button onPress={this.handleStartStopPress.bind(this)} title={this.getButtonLabel()}>
-                        {this.getButtonLabel()}
-                    </Button>
-                    <Button title="Guardar" onPress={this.handleSavePress.bind(this)} />
-                </View>
+                <TouchableHighlight onPress={this.toggleStopwatch}>
+                    <Text style={styles.text}>{!this.state.stopwatchStart ? "Comenzar" : "Detenerse"}</Text>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={this.resetStopwatch}>
+                    <Text style={styles.text}>Reset</Text>
+                </TouchableHighlight>
+
             </View>
         );
-    }
-
-    handleStartStopPress () {
-        if (!this.state.counting) {
-            this.startCount();
-        } else {
-            this.stopCount();
-        }
-    }
-
-    startCount () {
-        this.setState({
-            counting: true,
-            timeout: setInterval(this.timer.bind(this), 1000)
-        });
-    }
-
-    timer () {
-        let sec = this.state.seconds;
-        let min = this.state.minutes;
-        let hs = this.state.hours;
-
-        sec++;
-
-        if (sec === 60) {
-            sec = 0;
-            min++;
-
-            if (min === 60) {
-                min = 0;
-                hs++;
-            }
-        }
-
-        let result = this.getResult(hs, min, sec);
-
-        this.setState({
-            hours: hs,
-            minutes: min,
-            seconds: sec,
-            result: result
-        });
-    }
-
-    getResult (hs, min, sec) {
-        return this.leadingZero(hs) + ':' + this.leadingZero(min) + ':' + this.leadingZero(sec);
-    }
-
-    leadingZero (val) {
-        return (val < 10) ? '0' + val : val;
-    }
-
-    stopCount () {
-        clearInterval(this.state.timeout);
-
-        this.setState({
-            counting: false,
-            timeout: null
-        });
-    }
-
-    getButtonLabel () {
-        return (this.state.counting) ? 'Detener' : 'Comenzar';
-    }
-
-    handleSavePress () {
-        this.props.onSavePress(this.state.result);
     }
 };
 
 const styles = StyleSheet.create({
-    cronometro: {
-        fontSize: 50,
-        textAlign: 'center',
-        margin: 60
+    container: {
+        backgroundColor: 'black',
+        height: 570
+    },
+    watch: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    text: {
+        fontSize: 30,
+        color: 'white'
     }
 });
 
