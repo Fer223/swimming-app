@@ -18,7 +18,7 @@ module.exports = class Home extends Component {
                 <View style={styles.buttonSection}>
                     <Button onPress={this.onButtonPress.bind(this, 'Rutinas')} title='Rutinas' />
                     <Button onPress={this.onButtonPress.bind(this, 'Cronometro')} title='Cronometro' />
-                    <Button onPress={this.onButtonPress.bind(this, 'Estadisticas')} title='Estadisticas' />
+                    <Button onPress={this.onButtonPress.bind(this, 'RegistroTiempos')} title='Registro Tiempos' />
                 </View>
             </View>
         );

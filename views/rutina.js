@@ -29,7 +29,7 @@ module.exports = class Rutina extends ViewApp {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 50,
+        fontSize: 20,
         textAlign: 'center'
     },
     row: {

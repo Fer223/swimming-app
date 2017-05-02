@@ -5,10 +5,10 @@ import {
 } from 'react-native';
 
 import Cronometro from '../views/cronometro.js';
-import Estadisticas from '../views/estadisticas.js';
+import RegistroTiempos from '../views/registro-tiempos.js';
 import Home from '../views/home.js';
 import Login from '../views/login.js';
-import Rutina from '../views/rutina.js';        //TODAVIA NO FUNCA
+import Rutina from '../views/rutina.js';
 import Rutinas from '../views/rutinas.js';
 
 export default class AppNavigator extends Component {
@@ -20,8 +20,6 @@ export default class AppNavigator extends Component {
     }
 
     renderScene (route, navigator) {
-        var component = route.id;
-
         switch (route.id) {
             case 'Home':
                 return(<Home navigator={navigator} title='Home' />);
@@ -29,8 +27,8 @@ export default class AppNavigator extends Component {
                 return(<Login navigator={navigator} title='Login' />);
             case 'Rutinas':
                 return(<Rutinas navigator={navigator} title='Rutinas' />);
-            case 'Estadisticas':
-                return(<Estadisticas navigator={navigator} title='Estadisticas' />);
+            case 'RegistroTiempos':
+                return(<RegistroTiempos navigator={navigator} timeResults={route.resultados} title='RegistroTiempos' />);
             case 'Cronometro':
                 return(<Cronometro navigator={navigator} title='Cronometro' />);
             case 'Rutina':
