@@ -29,7 +29,8 @@ class Button extends Component {
             default: {
                 content: this.props.text,
                 style: {
-                    fontSize: 10
+                    fontSize: 20,
+                    color: 'white'
                 }
             }
         };

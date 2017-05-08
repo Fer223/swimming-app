@@ -10,6 +10,7 @@ class StopWatch extends Component {
       started: false,
       elapsed: null,
     };
+    this.formatted = null;
     this.start = this.start.bind(this);
     this.stop = this.stop.bind(this);
     this.reset = this.reset.bind(this);
@@ -52,7 +53,9 @@ class StopWatch extends Component {
   }
 
   save () {
-      console.warn('wep')
+      this.props.navigator.push({
+          id: 'RegistroTiempos'
+      });
   }
 
   start() {
@@ -101,6 +104,7 @@ class StopWatch extends Component {
       formatted = `${hours < 10 ? 0 : ""}${hours}:${minutes < 10 ?
         0 : ""}${minutes}:${seconds < 10 ? 0 : ""}${seconds}`;
     }
+    this.formatted = formatted;
     return formatted;
   }
 

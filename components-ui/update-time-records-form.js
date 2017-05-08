@@ -51,7 +51,7 @@ class UpdateTimeRecordsForm extends Component {
     renderSelectTimeBlock () {
         return (
             <View>
-                <TextInput defaultValut={this.props.timeResults} />
+                <TextInput />
                 <Button text='ir a cronometro' onPress={this.onIrCronometroPress.bind(this)}/>
             </View>
         );
