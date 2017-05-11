@@ -30,7 +30,7 @@ class Button extends Component {
                 content: this.props.text,
                 style: {
                     fontSize: 20,
-                    color: 'white'
+                    color: 'red'
                 }
             }
         };

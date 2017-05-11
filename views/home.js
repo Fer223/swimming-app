@@ -6,9 +6,10 @@ import {
     View
 } from 'react-native';
 
+import ViewApp from '../components-ui/view-app.js';
 import Button from '../components-core/Button.js';
 
-module.exports = class Home extends Component {
+module.exports = class Home extends ViewApp {
 
     render () {
         return (

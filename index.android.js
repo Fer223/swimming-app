@@ -3,13 +3,11 @@ import {
     AppRegistry
 } from 'react-native';
 
-import AppNavigator from './components-core/app-navigator.js'
+import App from './components-core/app.js';
 
 export default class swimmingApp extends Component {
     render() {
-        return (
-            <AppNavigator />
-        );
+        return <App/>;
     }
 };
 
