@@ -13,6 +13,7 @@ import {
 import ViewApp from '../components-ui/view-app.js';
 import UpdateTimeRecordsForm from '../components-ui/update-time-records-form.js';
 import Button from '../components-core/Button.js';
+import firebaseHandler from '../components-core/firebase-handler.js';
 
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 
@@ -20,15 +21,21 @@ class RegistroTiempos extends ViewApp {
     constructor () {
         super();
         this.state = {
-            menuOpen: false
+            menuOpen: false,
+            tiempos: []
         };
+    }
+
+    componentWillMount () {
+        firebaseHandler.retrieveTimeRecordsData()
+            .then((data) => this.setState({tiempos: data}));
     }
 
     render () {
         return (
             <View>
                 <View style={this.state.menuOpen ? styles.menuContainer : styles.menuContainerHide}>
-                    <UpdateTimeRecordsForm  navigator={this.props.navigator} timeResults={this.props.timeResults} />
+                    <UpdateTimeRecordsForm  navigator={this.props.navigator} tiempos={this.state.tiempos} />
                     <View style={{backgroundColor: '#0080FF', padding: 15}}>
                         <Text style={{textAlign: 'center', color: 'white'}}>Registro de tiempos</Text>
                     </View>

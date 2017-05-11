@@ -10,6 +10,7 @@ var config = {
 firebase.initializeApp(config);
 
 const firebaseRutinasRef = firebase.database().ref('rutinas');
+const firebaseTiemposRef = firebase.database().ref('usuarios/0/tiempos');
 
 var retrieveRoutinesData = function () {
     return new Promise((resolve, reject) => {
@@ -17,8 +18,24 @@ var retrieveRoutinesData = function () {
             resolve(data.val());
         });
     });
-}
+};
+
+var retrieveTimeRecordsData = function () {
+    return new Promise((resolve, reject) => {
+        firebaseTiemposRef.on('value', (data) => {
+            resolve(data.val());
+        });
+    });
+};
+
+var pushNewRecord = function (timeRecord) {
+    return new Promise((resolve, reject) => {
+        firebaseTiemposRef.set(timeRecord)
+    });
+};
 
 module.exports = {
-    retrieveRoutinesData: retrieveRoutinesData
+    retrieveRoutinesData: retrieveRoutinesData,
+    retrieveTimeRecordsData: retrieveTimeRecordsData,
+    pushNewRecord: pushNewRecord
 };

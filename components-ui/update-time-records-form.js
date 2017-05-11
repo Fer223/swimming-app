@@ -7,7 +7,9 @@ import {
     StyleSheet
 } from 'react-native';
 
+import _ from 'lodash';
 import Button from '../components-core/Button.js';
+import firebaseHandler from '../components-core/firebase-handler.js';
 
 class UpdateTimeRecordsForm extends Component {
     constructor () {
@@ -22,6 +24,14 @@ class UpdateTimeRecordsForm extends Component {
     }
 
     render () {
+        let state = this.state;
+        let formData = {
+            nombre: state.nombre,
+            metros: state.metros,
+            estilo: state.estilo,
+            tiempo: state.tiempo
+        };
+
         return (
             <View style={styles.container}>
                 <TextInput {...this.getNameInputProps()} />
@@ -31,6 +41,7 @@ class UpdateTimeRecordsForm extends Component {
                 </View>
                 {this.renderStylePicker()}
                 {this.renderSelectTimeBlock()}
+                <Button text='Guardar' onPress={firebaseHandler.pushNewRecord.bind(this, this.getTimesArray(formData))} />
             </View>
         );
     }
@@ -38,8 +49,8 @@ class UpdateTimeRecordsForm extends Component {
     renderStylePicker () {
         return (
             <Picker
-            selectedValue={this.state.estilo}
-            onValueChange={(estilo) => this.setState({estilo: estilo})}>
+                selectedValue={this.state.estilo}
+                onValueChange={(estilo) => this.setState({estilo: estilo})}>
             <Picker.Item label="Croll" value="Croll" />
             <Picker.Item label="Espalda" value="Espalda" />
             <Picker.Item label="Pecho" value="Pecho" />
@@ -51,7 +62,10 @@ class UpdateTimeRecordsForm extends Component {
     renderSelectTimeBlock () {
         return (
             <View>
-                <TextInput />
+                <TextInput
+                    onChangeText={(tiempo) => this.setState({tiempo: tiempo})}
+                    value={this.state.tiempo}
+                />
                 <Button text='ir a cronometro' onPress={this.onIrCronometroPress.bind(this)}/>
             </View>
         );
@@ -76,6 +90,13 @@ class UpdateTimeRecordsForm extends Component {
             onChangeText: (mts)=> this.setState({metros: mts}),
             value: this.state.metros
         };
+    }
+
+    getTimesArray (formData) {
+        var timeArray = _.cloneDeep(this.props.tiempos)
+        return timeArray.push({
+            formData
+        });
     }
 };
 

@@ -3,7 +3,8 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput
+    TextInput,
+    ToastAndroid
 } from 'react-native';
 
 import * as firebase from 'firebase';
@@ -32,11 +33,13 @@ module.exports = class Login extends ViewApp {
                 <TextInput
                     placeholder="Email"
                     onChangeText={(text) => this.setState({email: text})}
+                    keyboardType='email-address'
                 />
                 <TextInput
                     placeholder="password"
                     onChangeText={(text) => this.setState({password: text})}
                     onSubmitEditing={methodToPerform}
+                    //secureTextEntry={true} TODO: descomentar
                 />
                 <Button
                 onPress={() => this.setState({isRegistred: !this.state.isRegistred})}
@@ -46,13 +49,26 @@ module.exports = class Login extends ViewApp {
     }
 
     singup () {
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-        this.login();
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(() => {
+                this.login();
+                ToastAndroid.show('Success sing up', ToastAndroid.SHORT);
+            })
+            .catch((err) => {
+                ToastAndroid.show('Success sing up' + err.message, ToastAndroid.SHORT);
+            });
     }
 
     login () {
-        console.log(firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password));
-        this.redirectToHome();
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then((res) => {
+                console.log(res.email);
+                this.redirectToHome();
+            })
+            .catch((err) => {
+                ToastAndroid.show('Success sing up' + err.message, ToastAndroid.SHORT);
+            })
+
     }
 
     redirectToHome () {
@@ -60,6 +76,4 @@ module.exports = class Login extends ViewApp {
             id: 'Home'
         });
     }
-
-    // TODO: hacer promesas o async/await que react tiene incorporado
 };
