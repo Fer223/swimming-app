@@ -47,7 +47,7 @@ class UpdateTimeRecordsForm extends Component {
                 </View>
                 {this.renderStylePicker()}
                 {this.renderSelectTimeBlock()}
-                <Button text='Guardar' onPress={firebaseHandler.pushNewRecord.bind(this, this.getTimeArray(formData), this.state.userId)} />
+                <Button text='Guardar' onPress={this.handleGuardarOnPress.bind(this, formData)} />
             </View>
         );
     }
@@ -75,6 +75,11 @@ class UpdateTimeRecordsForm extends Component {
                 <Button text='ir a cronometro' onPress={this.onIrCronometroPress.bind(this)}/>
             </View>
         );
+    }
+
+    handleGuardarOnPress (formData) {
+        firebaseHandler.pushNewRecord(this.getTimeArray(formData), this.state.userId);
+        this.props.callback();
     }
 
     onIrCronometroPress () {

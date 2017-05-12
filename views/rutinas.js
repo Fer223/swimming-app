@@ -14,7 +14,7 @@ import firebaseHandler from '../components-core/firebase-handler.js';
 module.exports = class Rutinas extends ViewApp {
     constructor(){
         super();
-        
+
         this.state = {
             rutinas: null
         };
@@ -22,7 +22,8 @@ module.exports = class Rutinas extends ViewApp {
 
     componentWillMount () {
         firebaseHandler.retrieveRoutinesData()
-            .then((data) => this.setState({rutinas: data}));
+            .then((data) => this.setState({rutinas: data}))
+            .catch((err) => console.warn('ERROR: ', err.message))
     }
 
     render () {
