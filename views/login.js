@@ -31,21 +31,25 @@ module.exports = class Login extends ViewApp {
 
         return (
             <View>
-                <Text>{(this.state.isRegistred) ? 'Login' : 'Sing in'}</Text>
+                <Text style={{textAlign: 'center', fontSize: 25, margin: 30}}>{(this.state.isRegistred) ? 'Login' : 'Sing up'}</Text>
                 <TextInput
                     placeholder="Email"
                     onChangeText={(text) => this.setState({email: text})}
                     keyboardType='email-address'
+                    style={{margin: 20}}
                 />
                 <TextInput
                     placeholder="password"
                     onChangeText={(text) => this.setState({password: text})}
                     onSubmitEditing={methodToPerform}
-                    //secureTextEntry={true} TODO: descomentar
+                    secureTextEntry={true}
+                    style={{margin: 20}}
                 />
                 <Button
-                onPress={() => this.setState({isRegistred: !this.state.isRegistred})}
-                text={(this.state.isRegistred) ? 'Todavia no tenes cuenta?' : 'Volver a login'} />
+                    onPress={() => this.setState({isRegistred: !this.state.isRegistred})}
+                    text={(this.state.isRegistred) ? 'Todavia no tenes cuenta?' : 'Volver a login'}
+                    textStyle={{textAlign: 'center', fontSize: 20, marginTop: 15}}
+                 />
             </View>
         );
     }
@@ -55,7 +59,7 @@ module.exports = class Login extends ViewApp {
             .then((res) => {
                 firebaseHandler.pushDefaultRecord(res.uid).catch((err) => console.warn(err));
                 this.login();
-                ToastAndroid.show('Success sing up', ToastAndroid.SHORT);
+                ToastAndroid.show('Sing up exitoso', ToastAndroid.SHORT);
             })
             .catch((err) => {
                 ToastAndroid.show('Success sing up' + err.message, ToastAndroid.SHORT);

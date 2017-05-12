@@ -47,7 +47,7 @@ class UpdateTimeRecordsForm extends Component {
                 </View>
                 {this.renderStylePicker()}
                 {this.renderSelectTimeBlock()}
-                <Button text='Guardar' onPress={this.handleGuardarOnPress.bind(this, formData)} />
+                <Button textStyle={{color: 'white', fontSize: 20}} position={{margin: 10}} text='Guardar' onPress={this.handleGuardarOnPress.bind(this, formData)} />
             </View>
         );
     }
@@ -72,7 +72,7 @@ class UpdateTimeRecordsForm extends Component {
                     onChangeText={(tiempo) => this.setState({tiempo: tiempo})}
                     value={this.state.tiempo}
                 />
-                <Button text='ir a cronometro' onPress={this.onIrCronometroPress.bind(this)}/>
+                <Button textStyle={{color: 'white', fontSize: 22}} position={{margin: 10}} text='Ir a cronometro' onPress={this.onIrCronometroPress.bind(this)}/>
             </View>
         );
     }
@@ -114,7 +114,8 @@ class UpdateTimeRecordsForm extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#0080FF',
+        backgroundColor: '#819ff7',
+        opacity: 1,
         padding: 30
     }
 });

@@ -51,7 +51,7 @@ class RegistroTiempos extends ViewApp {
             <View>
                 <View style={this.state.menuOpen ? styles.menuContainer : styles.menuContainerHide}>
                     <UpdateTimeRecordsForm  {...this.getUpdateTimeRecordsFormProps()}  />
-                    <View style={{backgroundColor: '#0080FF', padding: 15}}>
+                    <View style={{backgroundColor: '#819ff7', padding: 15}}>
                         <Text style={{textAlign: 'center', color: 'white'}}>Registro de tiempos</Text>
                     </View>
                 </View>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         height: height,
         width: width,
         position: 'absolute',
-        top: -320
+        top: -1000
     },
     button: {
         position: 'absolute',

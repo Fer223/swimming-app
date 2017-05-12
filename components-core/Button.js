@@ -35,7 +35,7 @@ class Button extends Component {
             }
         };
 
-        return <Text style={button[type].style}>{button[type].content}</Text>
+        return <Text style={this.props.textStyle || button[type].style}>{button[type].content}</Text>
     }
 };
 
