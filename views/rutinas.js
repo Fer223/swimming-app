@@ -8,13 +8,13 @@ import {
 
 import TabbedArea from '../components-core/tabbed-area.js';
 import ViewApp from '../components-ui/view-app.js';
-import rutinas from '../data/rutinas.js'
 
 import firebaseHandler from '../components-core/firebase-handler.js';
 
 module.exports = class Rutinas extends ViewApp {
     constructor(){
         super();
+        
         this.state = {
             rutinas: null
         };

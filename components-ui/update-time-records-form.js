@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+    AsyncStorage,
     View,
     Text,
     TextInput,
@@ -19,8 +20,13 @@ class UpdateTimeRecordsForm extends Component {
             nombre: 'nombre',
             metros: '',
             estilo: 'Croll',
-            tiempo: '00:00'
+            tiempo: '00:00',
+            userId: ''
         };
+    }
+
+    componentWillMount () {
+        AsyncStorage.getItem('userId', (err, res) => {this.setState({userId: res})});
     }
 
     render () {
@@ -41,7 +47,7 @@ class UpdateTimeRecordsForm extends Component {
                 </View>
                 {this.renderStylePicker()}
                 {this.renderSelectTimeBlock()}
-                <Button text='Guardar' onPress={firebaseHandler.pushNewRecord.bind(this, this.getTimesArray(formData))} />
+                <Button text='Guardar' onPress={firebaseHandler.pushNewRecord.bind(this, this.getTimeArray(formData), this.state.userId)} />
             </View>
         );
     }
@@ -92,11 +98,12 @@ class UpdateTimeRecordsForm extends Component {
         };
     }
 
-    getTimesArray (formData) {
-        var timeArray = _.cloneDeep(this.props.tiempos)
-        return timeArray.push({
-            formData
-        });
+    getTimeArray (formData) {
+        var timeArray = _.cloneDeep(this.props.tiempos);
+
+        timeArray.push(formData);
+
+        return timeArray;
     }
 };
 

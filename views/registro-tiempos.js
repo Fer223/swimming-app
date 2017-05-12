@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    AsyncStorage,
     Picker,
     LayoutAnimation,
     StyleSheet,
@@ -20,6 +21,7 @@ UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationE
 class RegistroTiempos extends ViewApp {
     constructor () {
         super();
+
         this.state = {
             menuOpen: false,
             tiempos: []
@@ -27,11 +29,15 @@ class RegistroTiempos extends ViewApp {
     }
 
     componentWillMount () {
-        firebaseHandler.retrieveTimeRecordsData()
-            .then((data) => this.setState({tiempos: data}));
+        AsyncStorage.getItem('userId', (err, res) => {
+            firebaseHandler.retrieveTimeRecordsData(res)
+                .then((data) => this.setState({tiempos: data}))
+                .catch(() => this.setState({tiempos: []}))
+        });
     }
 
     render () {
+
         return (
             <View>
                 <View style={this.state.menuOpen ? styles.menuContainer : styles.menuContainerHide}>

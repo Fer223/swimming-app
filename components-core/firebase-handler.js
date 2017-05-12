@@ -9,8 +9,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const firebaseRutinasRef = firebase.database().ref('rutinas');
-const firebaseTiemposRef = firebase.database().ref('usuarios/0/tiempos');
+var firebaseRutinasRef = firebase.database().ref('rutinas');
+var firebaseTiemposRef;
 
 var retrieveRoutinesData = function () {
     return new Promise((resolve, reject) => {
@@ -19,16 +19,18 @@ var retrieveRoutinesData = function () {
         });
     });
 };
+var retrieveTimeRecordsData = function (userId) {
+    firebaseTiemposRef = firebase.database().ref('usuarios/' + userId + '/tiempos');
 
-var retrieveTimeRecordsData = function () {
     return new Promise((resolve, reject) => {
         firebaseTiemposRef.on('value', (data) => {
             resolve(data.val());
         });
     });
 };
+var pushNewRecord = function (timeRecord, userId) {
+    firebaseTiemposRef = firebase.database().ref('usuarios/' + userId + '/tiempos');
 
-var pushNewRecord = function (timeRecord) {
     return new Promise((resolve, reject) => {
         firebaseTiemposRef.set(timeRecord)
     });

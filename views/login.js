@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    AsyncStorage,
     StyleSheet,
     Text,
     View,
@@ -50,7 +51,7 @@ module.exports = class Login extends ViewApp {
 
     singup () {
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
+            .then((res) => {
                 this.login();
                 ToastAndroid.show('Success sing up', ToastAndroid.SHORT);
             })
@@ -62,7 +63,7 @@ module.exports = class Login extends ViewApp {
     login () {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((res) => {
-                console.log(res.email);
+                AsyncStorage.setItem('userId', res.uid),
                 this.redirectToHome();
             })
             .catch((err) => {
