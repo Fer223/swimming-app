@@ -15,16 +15,16 @@ export default class AppNavigator extends Component {
 
     render () {
         return (
-            <Navigator initialRoute={{id: 'Home'}} renderScene={this.renderScene} />
+            <Navigator initialRoute={{id: 'Login'}} renderScene={this.renderScene} />
         );
     }
 
     renderScene (route, navigator) {
         switch (route.id) {
-            case 'Home':
-                return(<Home navigator={navigator} title='Home' />);
             case 'Login':
                 return(<Login navigator={navigator} title='Login' />);
+            case 'Home':
+                return(<Home navigator={navigator} title='Home' />);
             case 'Rutinas':
                 return(<Rutinas navigator={navigator} title='Rutinas' />);
             case 'RegistroTiempos':

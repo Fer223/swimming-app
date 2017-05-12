@@ -6,9 +6,10 @@ import {
     View
 } from 'react-native';
 
+import ViewApp from '../components-ui/view-app.js';
 import Button from '../components-core/Button.js';
 
-module.exports = class Home extends Component {
+module.exports = class Home extends ViewApp {
 
     render () {
         return (
@@ -26,9 +27,9 @@ module.exports = class Home extends Component {
                     source={require('../assets/nadadora.jpg')}
                 />
                 <View style={styles.buttonSection}>
-                    <Button onPress={this.onButtonPress.bind(this, 'Rutinas')} text='Rutinas' />
-                    <Button onPress={this.onButtonPress.bind(this, 'Cronometro')} text='Cronometro' />
-                    <Button onPress={this.onButtonPress.bind(this, 'RegistroTiempos')} text='Registro Tiempos' />
+                    <Button textStyle={styles.text} position={styles.button} onPress={this.onButtonPress.bind(this, 'Rutinas')} text='Rutinas' />
+                    <Button textStyle={styles.text} position={styles.button} onPress={this.onButtonPress.bind(this, 'Cronometro')} text='Cronometro' />
+                    <Button textStyle={styles.text} position={styles.button} onPress={this.onButtonPress.bind(this, 'RegistroTiempos')} text='Registro Tiempos' />
                 </View>
             </View>
         );
@@ -47,12 +48,23 @@ const styles = StyleSheet.create({
     buttonSection: {
         position: 'absolute',
         left: width /2 -150,
-        top: height/2,
-        width: 300,
-        margin: 30
+        top: height/2 -140,
+        width: 300
     },
     img: {
         width: width,
         height: height / 3
+    },
+    button: {
+        margin: 10,
+        backgroundColor: '#819ff7',
+        borderWidth: 1,
+        borderColor: 'white'
+    },
+    text: {
+        fontSize: 23,
+        color: 'white',
+        textAlign: 'center',
+        padding: 6
     }
 });

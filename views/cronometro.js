@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    Dimensions,
     View,
     StyleSheet,
     Text,
@@ -67,10 +68,12 @@ class Chronometer extends ViewApp {
     }
 };
 
+let {height, width} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
-        height: 570
+        height: height
     },
     watch: {
         flex: 1,

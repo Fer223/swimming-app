@@ -30,12 +30,12 @@ class Button extends Component {
                 content: this.props.text,
                 style: {
                     fontSize: 20,
-                    color: 'white'
+                    color: 'red'
                 }
             }
         };
 
-        return <Text style={button[type].style}>{button[type].content}</Text>
+        return <Text style={this.props.textStyle || button[type].style}>{button[type].content}</Text>
     }
 };
 
