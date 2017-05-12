@@ -11,6 +11,7 @@ import {
 import * as firebase from 'firebase';
 import Button from '../components-core/Button.js';
 import ViewApp from '../components-ui/view-app.js';
+import firebaseHandler from '../components-core/firebase-handler.js';
 
 module.exports = class Login extends ViewApp {
     constructor () {
@@ -52,6 +53,7 @@ module.exports = class Login extends ViewApp {
     singup () {
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then((res) => {
+                firebaseHandler.pushDefaultRecord(res.uid).catch((err) => console.warn(err));
                 this.login();
                 ToastAndroid.show('Success sing up', ToastAndroid.SHORT);
             })

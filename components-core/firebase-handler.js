@@ -11,6 +11,7 @@ firebase.initializeApp(config);
 
 var firebaseRutinasRef = firebase.database().ref('rutinas');
 var firebaseTiemposRef;
+var firebaseDefaultRecordRef;
 
 var retrieveRoutinesData = function () {
     return new Promise((resolve, reject) => {
@@ -35,9 +36,21 @@ var pushNewRecord = function (timeRecord, userId) {
         firebaseTiemposRef.set(timeRecord)
     });
 };
+var pushDefaultRecord = function (userId) {
+    firebaseDefaultRecordRef = firebase.database().ref('usuarios/');
+    var defaultStructure = {};
+    defaultStructure[userId] = {
+        tiempos: ['']
+    };
+
+    return new Promise((resolve, reject) => {
+        firebaseDefaultRecordRef.update(defaultStructure)
+    });
+}
 
 module.exports = {
     retrieveRoutinesData: retrieveRoutinesData,
     retrieveTimeRecordsData: retrieveTimeRecordsData,
-    pushNewRecord: pushNewRecord
+    pushNewRecord: pushNewRecord,
+    pushDefaultRecord: pushDefaultRecord
 };

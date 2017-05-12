@@ -41,22 +41,28 @@ class TimesListView extends Component {
     }
 
     renderRow (rowData, section1, index) {
-        return (
-            <View style={(index % 2) ? styles.row : styles.secondaryRow}>
-                <Text>
-                    {rowData.estilo}
-                </Text>
-                <Text>
-                    {rowData.metros}
-                </Text>
-                <Text>
-                    {rowData.nombre}
-                </Text>
-                <Text>
-                    {rowData.tiempo}
-                </Text>
-            </View>
-        );
+        var row = null;
+
+        if(index > 0) {
+            row = (
+                <View style={(index % 2) ? styles.row : styles.secondaryRow}>
+                    <Text>
+                        {rowData.estilo}
+                    </Text>
+                    <Text>
+                        {rowData.metros}
+                    </Text>
+                    <Text>
+                        {rowData.nombre}
+                    </Text>
+                    <Text>
+                        {rowData.tiempo}
+                    </Text>
+                </View>
+            );
+        }
+
+        return row;
     }
 };
 
